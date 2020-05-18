@@ -24,9 +24,10 @@
             border: 1px solid black;
             flex: 1;
         }
-        img{
-            width: 5vw;
-            height: 5vw;
+
+        img {
+            width: 10vw;
+            height: 10vw;
         }
     </style>
 </head>
@@ -49,7 +50,7 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;imgSrc: 'images/lion.jpg',<br>
             &nbsp; &nbsp; &nbsp;},<br>
             &nbsp; &nbsp; &nbsp; &nbsp;methods: {<br>
-             &nbsp; &nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;showImg: function () {<br>
+            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;showImg: function () {<br>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.con = !this.con;<br>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
             &nbsp; &nbsp;}<br>
@@ -63,6 +64,50 @@
                 <div v-show="con"><img v-bind:src="imgSrc"></div>
             </div>
         </div>
+    </div><br><br>
+    2. Vue 반복문을 사용해서 리스트 출력하기<br>
+    <hr><br>
+    <div id="review1">
+        <div id="ex">
+            <br>
+            &lt;div id="app2"&gt;<br>
+            &nbsp; &nbsp; &lt;ul><br>
+            &nbsp; &nbsp;&nbsp; &nbsp;&lt;li v-for="v in items"> {{ v.item }} &lt;/li><br>
+            &nbsp; &nbsp; &lt;/ul><br>
+            &lt;div &gt;<br><br>
+            &lt;script&gt;<br>
+            &nbsp; &nbsp;let app2 = new Vue({<br>
+            &nbsp; &nbsp;&nbsp; &nbsp; el: '#app2',<br>
+            &nbsp; &nbsp;&nbsp; &nbsp; data: {<br>
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; items: [<br>
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; { item: '바나나' },<br>
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; { item: '사과' },<br>
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; { item: '딸기' }]<br>
+            &nbsp; &nbsp;&nbsp; &nbsp;}<br>
+            &nbsp; &nbsp;});<br>
+            &lt;/script&gt;
+        </div>
+        <div id="ans">
+            <div id="app2">
+                <ul>
+                    <li v-for="v in items"> {{ v.item }} </li>
+                </ul>
+            </div>
+        </div>
+    </div><br><br>
+    3. 마우스 <br>
+    <hr><br>
+    <div id="review1">
+        <div id="ex">
+            <br>
+  
+        </div>
+        <div id="ans">
+            <div id="app3">
+                <div v-show="status">안녕하세요.</div>
+                <div @mouseover="mouseOver">마우스를 올려놓으세요.</div>
+            </div>
+        </div>
     </div>
     <script>
         let app1 = new Vue({
@@ -74,6 +119,27 @@
             methods: {
                 showImg: function () {
                     this.con = !this.con;
+                }
+            }
+        });
+
+        let app2 = new Vue({
+            el: '#app2',
+            data: {
+                items: [
+                    { item: '바나나' },
+                    { item: '사과' },
+                    { item: '딸기' }]
+            }
+        });
+        let app3 = new Vue({
+            el: '#app3',
+            data: {
+                status: false
+            },
+            methods: {
+                mouseOver: function(){
+                    this.status = !this.status;   
                 }
             }
         });
