@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/vue.js"></script>
+</head>
+<body>
+    <h3>Vue 기초 학습</h3><br><hr><br>
+    1.step01 인스턴스 생성 및 바인딩
+    <div id="app1">
+        제공받는 데이터: {{message}} <br>
+        축력도 가능 : {{}} <br>
+
+    </div>
+    <script>  
+        let app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: 'vue로 인해 출력되는 데이터'
+            }
+        })
+    </script>
+    <br><hr><br>
+    
+    2.step02 html특정위체에 마우스를 올려놓으면 보이는...
+    <div id="app2">
+      <span v-bind:title="message">마우스올리기</span>
+    </div>
+    <script>  
+        let app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: '두번째 객체'
+            }
+        })
+    </script>
+    <br><hr><br>
+    3.step03 조건식 <br>
+    <div id="app3">
+        <p v-if="trueData">
+            데이터가 트루이면 출력
+        </p>
+    </div>
+    <script>  
+        let app3 = new Vue({
+            el: '#app3',
+            data: {
+                trueData: false
+            }
+        })
+    </script>
+    <br><hr><br>
+    
+    4.step04 반복문 <br>
+    <div id="app4">
+        <ol>
+            <li v-for="v in datas">
+                {{v.data}}
+            </li>
+        </ol>
+    </div>
+    <script>  
+        let app4 = new Vue({
+            el: '#app4',
+            data: {
+                datas: [
+                    {data: "one"},
+                    {data: "two"},
+                    {data: "three"}
+                ]
+            }
+        })
+    </script>
+    <br><hr><br>
+    5.step05 함수 구현 및 호출
+    <div id="app5"> 
+        이름: {{name}}<br>
+        취미: {{hobbyFun()}}
+    </div>
+    <script>  
+        let app5 = new Vue({
+            el: '#app5',
+            data: {
+                name: "SIAT",
+                hobby: "코드 리뷰"
+            },
+            methods: {
+                hobbyFun : function(){
+                    return this.name+"의 취미는"+this.hobby;
+                }
+            }
+            
+        })
+    </script>
+    <br><hr><br>
+    5.step06 JSON객체 활용
+    <div id="app6"> 
+        취미: {{hobbyFun()}}
+    </div>
+    <script>  
+        let hobbyJSON = {"one":"독서", "two":"멍"}
+        let app6 = new Vue({
+            el: '#app6',
+            data: hobbyJSON,
+            methods: {
+                hobbyFun : function(){
+                    return this.one + this.two;
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

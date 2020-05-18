@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/vue.js"></script>
+    <style>
+        #review1 {
+            border-style: double;
+            display: flex;
+            width: 50%;
+        }
+
+        #ex {
+            border: 1px solid black;
+            background-color: #f4ea8e;
+            flex: 1;
+        }
+
+        #ans {
+            background-color: #5fdde5;
+            border: 1px solid black;
+            flex: 1;
+        }
+        img{
+            width: 5vw;
+            height: 5vw;
+        }
+    </style>
+</head>
+
+<body>
+    1. 버튼을 클릭해서 이미지를 화면에 출력해보자.<br>
+    <hr><br>
+    <div id="review1">
+        <div id="ex">
+            <br>
+            &lt;div id="app1"&gt;<br>
+            &nbsp; &nbsp; &lt;button v-on:click="showImg()"&gt;이미지 화면에 보이기&lt;/button&gt; <br>
+            &nbsp; &nbsp; &lt;div v-show="con">&lt;img v-bind:src="imgSrc">&lt;/div&gt;
+            <br>&lt;/div&gt;<br>
+            &lt;script&gt;<br>
+            &nbsp; &nbsp;let app1 = new Vue({<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;el: '#app1',<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;data: {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;con: true,<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;imgSrc: 'images/lion.jpg',<br>
+            &nbsp; &nbsp; &nbsp;},<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;methods: {<br>
+             &nbsp; &nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;showImg: function () {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.con = !this.con;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            &nbsp; &nbsp;}<br>
+            &nbsp; &nbsp;});<br>
+            &lt;/script&gt;
+        </div>
+        <div id="ans">
+            <div id="app1">
+                <br>
+                <button v-on:click="showImg()">이미지 화면에 보이기</button>
+                <div v-show="con"><img v-bind:src="imgSrc"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let app1 = new Vue({
+            el: '#app1',
+            data: {
+                con: true,
+                imgSrc: 'images/croc.jpg',
+            },
+            methods: {
+                showImg: function () {
+                    this.con = !this.con;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

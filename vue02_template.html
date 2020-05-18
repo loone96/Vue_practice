@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/vue.js"></script>
+</head>
+
+<body>
+    <h2>템플릿 & event</h2>
+    <br>
+    <hr><br>
+    1. step01 - html 이미지 출력
+    <div id="app1">
+        {{title}} <br>
+        <img v-bind:src="imgSrc">
+    </div>
+    <script>
+        let app1 = new Vue({
+            el: '#app1',
+            data: {
+                title: "lion 사진",
+                imgSrc: "images/lion.jpg"
+            }
+        });
+
+    </script>
+    2. step02 - 버튼 클릭 출력
+    <div id="app2">
+        <button v-on:click="dataView">데이터 보기</button>
+        <div>{{data1}}</div>
+    </div>
+    <script>
+        let app2 = new Vue({
+            el: '#app2',
+            data: {
+                data1: ""
+            },
+            methods: {
+                dataView: function () {
+                    this.data1 = "클릭후에 출력되는 데이터 1"
+                    return this.data1;
+                }
+            }
+        });
+
+    </script>
+    <br>
+    <hr><br>
+    3. step03 - 버튼 클릭 출력
+    <div id="app3">
+        <button v-on:click="dataView">데이터 보기</button>
+        <div>
+            <span v-if="con">{{data1}}</span>
+        </div>
+    </div>
+    <script>
+        let app3 = new Vue({
+            el: '#app3',
+            data: {
+                con: false,
+                data1: ""
+            },
+            methods: {
+                dataView: function () {
+                    this.con = !this.con;
+                    if(this.con == true) {
+                        this.data1 = "클릭후에 출력되는 데이터 1";
+                    } else {
+                        this.data1 = "";
+                    }
+                    return this.data1;
+                }
+            }
+        });
+
+    </script>
+    <br><hr><br>
+
+     4. step04 css 반영
+     <div id="app4">
+        <p v-bind:style="redFont">글씨글씨글씨</p>
+     </div>
+     <script>
+         let app4 = new Vue({
+             el: '#app4',
+             data: {
+                 redFont: 'color:red'
+             }
+                
+         });
+ 
+     </script>
+
+</body>
+
+</html>
