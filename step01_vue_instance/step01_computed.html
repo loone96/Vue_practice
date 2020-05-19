@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    월급: <input type="text">
+    <br>
+    <hr><br>
+    <div id="app">
+        검색하는 도시 : <input type="text" v-model="searchCity"><br>
+        <ul>
+            <li v-for="city in filtering">{{ city }}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                searchCity: '',
+                cities: ['seoul', 'paris', 'seattle', 'chicago', 'new york', 'rome', 'praha', 'venezia', 'budapest']
+            }, computed: {
+                filtering: function () {
+                    return this.cities.filter(item => item.match(this.searchCity))
+                }
+            }
+        });
+
+    </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    <h3>props property 학습</h3>
+
+    <dl>
+        <dd> 1. 컨포넌트간의 데이터 이동</dd>
+        <dd> 2. 부모 컨포넌트에서 자식으로 데이터 이동</dd>
+    </dl>
+    <br>
+    <hr><br>
+    <div id="app">
+       <p>{{message}}</p> 
+        <child :supportdata="message"></child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            props: ['supportdata'],
+            template : `<font color="red">{{supportdata}}</font>`
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                message: '부모단의 데이터'
+
+            }
+        });
+     
+    </script>
+</body>
+
+</html>

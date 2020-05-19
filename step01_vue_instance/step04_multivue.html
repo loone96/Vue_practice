@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+<body>
+    <h3>다수의 vue간의 데이터 호환 방식</h3>
+    <br><hr><br>
+
+    <dl>
+        <dd>1. 서로 다른 vue instance 객체에 정의된 property를 사용해 접근하는 방식</dd>
+        
+    </dl>
+    <div id="app1">
+        <p>{{message}}</p><br>
+        <burron type="button" @click="changeMessage()">메세지 변경하기</burron>
+    </div>
+    <div id="app2">
+        <p>{{message}}</p><br>
+    </div>
+
+    <script>
+        let vm1 = new Vue({
+            el: '#app1',
+            data: {
+                message: 'one'
+            },
+            methods: {
+                changeMessage: function(){
+                    vm2.message='원에서 변경'
+                }
+            }
+        });
+        let vm2 = new Vue({
+            el: '#app2',
+            data: {
+                message: 'two'
+            }
+        });
+    </script>
+</body>
+</html>

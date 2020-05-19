@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>직원을 추가하세요.</p>
+        이름: <input type="text" v-model="newCust.name">
+        나이: <input type="text" v-model="newCust.age">
+        월급: <input type="text" v-model="newCust.monthpay"><br>
+        <button @click="insertCust()">직원 추가</button>
+        <br>
+        <hr>
+        <h3>직원 관리</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th @click="sortedData(age)">나이</th>
+                    <th>월급</th>
+                    <th>연봉</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="cus in computedList">
+                    <td>{{cus.name}}</td>
+                    <td>{{cus.age}}</td>
+                    <td>{{cus.monthpay}}</td>
+                    <td>{{cus.yearpay}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                currColumn: {},
+                customers: [
+                    { name: '김직원', age: 23, monthpay: 100, yearpay: 0 },
+                    { name: '이직원', age: 23, monthpay: 200, yearpay: 0 },
+                    { name: '박직원', age: 63, monthpay: 300, yearpay: 0 },
+                    { name: '최직원', age: 73, monthpay: 400, yearpay: 0 },
+                    { name: '하직원', age: 73, monthpay: 500, yearpay: 0 }
+                ],
+                newCust: {}
+            },
+            computed: {
+                computedList: function () {
+                    var i;
+                    for (i = 0; i < this.customers.length; i++) {
+                        this.customers[i].yearpay = (this.customers[i].monthpay * 12);
+                    }
+                    return this.customers;
+                },
+                sortedData: function (v) {
+                    this.customers.sort(function (a, b, i, v) {
+                        return a[i].v > b[i].v;
+                    })
+                }
+            },
+            methods: {
+                insertCust: function () {
+                    this.customers.push(this.newCust);
+                    this.newCust = {};
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

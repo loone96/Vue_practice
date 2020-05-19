@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+<body>
+    <h3> watch property 학습</h3>
+    <br><hr>
+    <div id="app">
+        현재나이: <input type="number" v-model.number="currAge"><br>
+        10년후 나이: <input type="number" v-model.number="laterAge">
+      
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                currAge: 0,
+                laterAge: 0
+            },
+            watch : {
+                currAge: function(v){
+                    console.log("currAge"+ v);
+                    this.currAge = v;//없애줘도 됨
+                    this.laterAge = v+10;
+                },
+                laterAge: function(v){
+                    this.currAge = v-10;
+                    this.laterAge = v;
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
