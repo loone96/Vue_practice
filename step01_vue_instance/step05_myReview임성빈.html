@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/table.css">
     <script src="../script/vue.js"></script>
 </head>
 
 <body>
+    <h3>직원 관리</h3>
     <div id="app">
         <p>직원을 추가하세요.</p>
         이름: <input type="text" v-model="newCust.name">
@@ -17,12 +19,12 @@
         <button @click="insertCust()">직원 추가</button>
         <br>
         <hr>
-        <h3>직원 관리</h3>
+        <p>직원 리스트</p>
         <table>
             <thead>
                 <tr>
                     <th>이름</th>
-                    <th @click="sortedData(age)">나이</th>
+                    <th>나이</th>
                     <th>월급</th>
                     <th>연봉</th>
                 </tr>
@@ -42,13 +44,12 @@
         const app = new Vue({
             el: '#app',
             data: {
-                currColumn: {},
                 customers: [
-                    { name: '김직원', age: 23, monthpay: 100, yearpay: 0 },
-                    { name: '이직원', age: 23, monthpay: 200, yearpay: 0 },
-                    { name: '박직원', age: 63, monthpay: 300, yearpay: 0 },
-                    { name: '최직원', age: 73, monthpay: 400, yearpay: 0 },
-                    { name: '하직원', age: 73, monthpay: 500, yearpay: 0 }
+                    { name: '김직원', age: 33, monthpay: 190},
+                    { name: '이직원', age: 28, monthpay: 250},
+                    { name: '박직원', age: 60, monthpay: 300},
+                    { name: '최직원', age: 53, monthpay: 400},
+                    { name: '하직원', age: 47, monthpay: 500}
                 ],
                 newCust: {}
             },
@@ -59,11 +60,6 @@
                         this.customers[i].yearpay = (this.customers[i].monthpay * 12);
                     }
                     return this.customers;
-                },
-                sortedData: function (v) {
-                    this.customers.sort(function (a, b, i, v) {
-                        return a[i].v > b[i].v;
-                    })
                 }
             },
             methods: {
