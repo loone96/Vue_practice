@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        div {
+            padding: 4px;
+        }
+
+        p {
+            color: red
+        }
+
+        button {
+            background-color: rgb(151, 195, 245);
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>EventBus 즉 서로 연관없는 컴포넌트들 간에 데이터 전송하는 기술의 review</h3>
+    대기자 수 증가 및 감소 로직<br>
+
+    <div id="app">
+        <result-component></result-component>
+        <servicebefore-component></servicebefore-component>
+        <serviceafter-component></serviceafter-component>
+    </div>
+
+    <script>
+        const EventBus = new Vue();
+
+        Vue.component('servicebefore-component', {
+            template: `<button @click="add">대기표 뽑기</button>`,
+            methods: {
+                add() {
+                    EventBus.$emit('add');
+                }
+            }
+        });
+
+        Vue.component('serviceafter-component', {
+            template: `<button @click="subtract">서비스 처리완료</button>`,
+            methods: {
+                subtract() {
+                    EventBus.$emit('subtract');
+                }
+            }
+        });
+
+        Vue.component('result-component', {
+            template: `<div>
+              <p>현재 대기자 수 : {{ count }} 입니다.</p>  
+             </div>`,
+            data() {   //data: 표현으로 하면 실행이 안 된다
+                return {
+                    count: 0,
+                }
+            },
+            created() {
+                EventBus.$on('subtract', () => {
+                    if (this.count >= 1) {
+                        this.count -= 1;
+                    }
+                }),
+                    EventBus.$on('add', () => {
+                        this.count += 1;
+                    })
+            }
+        });
+
+        new Vue({
+            el: '#app',
+        });
+
+    </script>
+</body>
+
+</html>

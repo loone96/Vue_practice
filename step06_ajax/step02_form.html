@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        textarea {
+            display: block;
+            min-width: 400px;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #e8f7f3;
+            border: 2px solid teal;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>1. v-model 수식어를 이용한 공백제거, data property 지연 업데이트등</h3>
+    <div id="app1">
+        <!-- lazy 수식어 생략 전후 vue devtool 부분 확인 해 보기-->
+        <input type="text" v-model.lazy="userId" placeholder="아이디를 입력하세요." />
+        <input type="password" v-model="password" placeholder="비밀번호를 입력하세요." />
+        <input type="number" v-model.number="age" placeholder="나이를 입력하세요" />
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app1',
+            data() {
+                return {
+                    userId: '',
+                    password: '',
+                    age: 0
+                }
+            }
+        });
+    </script>
+    <br>
+    <hr>
+    <h4>입력여부 유효성 검증</h4>
+    <div id="app2">
+        <form action="#" @submit="checkForm">
+            id: <input type="text" v-model="userId" name="userId">
+            <input type="submit" value="전송">
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el: '#app2',
+            data: {
+                userId: ''
+            },
+            methods: {
+                checkForm: function() {
+                    if(!this.userId.trim()) {
+                        alert('입력 필요');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

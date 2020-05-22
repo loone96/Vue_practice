@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h3>slot 기능을 활용하여 화면 분할 해 보기</h3>
+    <br><hr>
+    1. 실행 후 브라우저 소스 보기 필수 <br>
+
+    <div id="app">
+        <mypage>
+            <!-- name 속성값이 header의 <slot>과 치환됨 -->
+            <h1 slot="header">Header 부분</h1>
+
+            <!-- 단일 슬롯과 치환되는 콘텐츠 -->
+            <p>
+                Content 부분
+            </p>
+
+            <!-- name 속성값이 footer의 <slot>과 치환됨 -->
+            <p slot="footer">Footer 부분</p>
+        </mypage>
+    </div>
+
+    <script>
+        var MyPage = {
+            template: `<div>
+            <header>
+                <!-- 헤더 슬롯(이름을 갖는 슬롯) -->
+                <slot name="header"></slot>
+            </header>
+            <main>
+                <!-- 바디 슬롯 -->
+                <slot></slot>
+            </main>
+            <footer>
+                <!-- 푸터 슬롯(이름을 갖는 슬롯) --> 
+                <slot name="footer"></slot>
+            </footer>
+            </div>`
+        }
+
+        new Vue({
+            el: '#app',
+            components: {  //자식 컴포넌트로 등록하는 또 다른 문법
+                mypage: MyPage
+            }
+        })
+
+    </script>
+</body>
+
+</html>

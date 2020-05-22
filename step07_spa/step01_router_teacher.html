@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <div id="app">
+        <p>
+          <router-link to="/parent">상위 컴포넌트로 이동</router-link>
+          <router-link to="/parent/child1">하위1 컴포넌트로 이동</router-link>
+          <router-link to="/parent/child2">하위2 컴포넌트로 이동</router-link>
+        </p>
+  
+        <hr>
+        <router-view></router-view>
+      </div>
+   
+      <script>
+          var parent = {
+          template: ` 
+            <div>
+              상위 Component
+              <router-view></router-view> <!-- 하위 컴포넌트 출력 위치 -->
+            </div>
+          `
+        };
+   
+        //하위 컴포넌트 : child1, child2
+        var child1 = { template: '<p>하위1 Component</p>' };
+        var child2 = { template: '<p>하위2 Component</p>' };
+         
+        //parent 컴포넌트 라우터의 자식으로 child1, child2으로 구성
+        var routes = [
+          {
+            path: '/parent',
+            component: parent,
+            children: [
+              {
+                path: 'child1',
+                component: child1
+              },
+              {
+                path: 'child2',
+                component: child2
+              },
+            ]
+          }
+        ];
+        var router = new VueRouter({
+          routes
+        });
+  
+        var app = new Vue({
+          el : "#app",
+          router
+        });
+  
+      </script>
+  
+</body>
+
+</html>

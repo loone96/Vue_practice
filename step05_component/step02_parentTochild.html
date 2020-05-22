@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+</head>
+<body>
+    <h3>부모가 자식 컴포넌트에게 데이터 이동</h3>
+    <br><hr><br>
+    <div id="app">
+        <child-component v-bind:propsdata="supermessage"></child-component>
+    </div>
+
+    <script>
+        //자식 컴포넌트
+        Vue.component('child-component', {
+            props: ['propsdata'],
+            template: '<p>{{ propsdata }}</p>'
+        });
+
+        //부모 컴포넌트
+        new Vue({
+            el: '#app',
+            data: {
+                supermessage: '부모 인스턴스에서 제공해주는 데이터'
+            }
+        });
+    </script>
+</body>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <div id="app">
+        <p>
+            <router-link to="/parent">첫번째 컴포넌트</router-link>
+            <router-link to="/parent/child1">두번째 컴포넌트</router-link>
+            <router-link to="/parent/child2">세번째 컴포넌트</router-link>
+        </p>
+        <br>
+        <router-view></router-view>
+    </div>
+    <script>
+        const parent = {
+            template: '<div>상위 컴포넌트<router-view></router-view></div>'
+
+        }
+        const child1 = {
+            template: '하위1 컴포넌트'
+        }
+        const child2 = {
+            template: '하위2 컴포넌트'
+        }
+
+        const routers = [{
+            path: '/parent',
+            component: parent,
+            children: [
+                {
+                    path: '/child1',
+                    component: child1,
+                },
+                {
+                    path: '/child2',
+                    component: child2,
+                }
+            ]
+        }]
+
+        const router = new VueRouter({
+            routers
+        });
+
+        const app = new Vue({
+            router
+        }).$mount('#app');
+
+    </script>
+
+</body>
+
+</html>

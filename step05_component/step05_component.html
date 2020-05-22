@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        현재 대기자 수: {{people}} <br>
+        <service-before></service-before>
+        <service-after></service-after>
+    </div>
+
+    <script>
+        let eventBus = new Vue();
+        Vue.component('service-before', {
+            template: `<button @click="plusdata()">대기표뽑기</button>`,
+            methods: {
+                plusdata: function () {
+                    eventBus.$emit('plus', 1);
+                }
+            }
+        });
+        Vue.component('service-after', {
+            template: `<button @click="minusdata()">서비스처리완료</button>`,
+            methods: {
+                minusdata: function () {
+                    eventBus.$emit('minus', -1);
+                }
+            }
+        });
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                people: 0
+            },
+            created: function () {
+                console.log('실행시점---');
+                eventBus.$on('plus', function (v) {
+                    console.log('받은데이터' + v);
+                    vm.people += v;
+                });
+                eventBus.$on('minus', function (v) {
+                    console.log('받은데이터' + v);
+                    if (vm.people != 0) {
+                        vm.people += v;
+                    }
+                });
+            }
+        });
+
+
+        // div id app 하단 컴포넌트 버튼 태그 2개와 {{people}}
+
+        //뷰 컴포넌트 1 service-before
+        //템플릿 버튼태그로 만든 후 클릭 이벤트로 이벤트 버스로 데이터 1 전송
+        //뷰 컴포넌트 2 service-after
+        //템플릿 버튼태그로 만든 후 클릭 이벤트로 이벤트 버스로 데이터 -1 전송
+        //뷰 인스턴스 1 eventBus
+        //데이터 people 0값 가진다.
+        //created 함수로 데이터 1 or -1 받는다.
+
+        //people의 값이 음수가 안나오게 하려면 어떻게??
+        //컴포넌트에서 처리 or 뷰에서 ?
+
+
+
+
+    </script>
+</body>
+
+</html>

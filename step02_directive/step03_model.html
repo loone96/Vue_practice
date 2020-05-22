@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    <h3>v-model을 이용한 바인딩 응용</h3>
+    1.step01학습<br>
+    <div id="personInfo">
+        입력: <input type="text" v-model="info"/><br><br>
+        이름: {{name}} 
+        나이: {{age}}
+    </div>
+    <script>
+        new Vue({
+            el:'#personInfo',
+            data: {
+                name : '유재석',
+                age : '20'
+            },
+            computed: {
+                info : {
+                    get: function(){
+                        console.log('get()');
+                        return this.name + ' ' +this.age;
+                    },
+                    set: function(info){
+                        console.log('set()');
+                        info = info.split(' ');
+                        this.name = info[0];
+                        this.age = info[1];
+                    }
+                }
+            }
+        });
+    </script>
+    2.입력하는 글자수 세기<br>
+    <div id="databinding">
+        <input type="text" placeholder="enter your name" v-model="name"><br>
+        글자수: {{name | inputdata | counting}}
+    </div>
+    <script>
+        new Vue({
+            el: '#databinding',
+            data: {
+                name: '',
+            }, 
+            filters : {
+                inputdata : function (v) {
+                    console.log(v);
+                    return v+'siat';
+                },
+                counting : function (v) {
+                    return v.length;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

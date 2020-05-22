@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../script/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+         {{item.fe3}}
+         <input type="text" v-model="newNum">
+    </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                item: '',
+                newNum: '',
+                newItem: ''
+            },
+            mounted: function () {
+                //선생님이 주신 깃허브로 변경
+                //http://localhost/step18_deptResponse/controller
+                axios.get("http://localhost/step18_deptResponse/dept.jsp").then(response => (this.item = response.data)).catch(error => { console.log(error) });
+            }
+           
+        });
+    </script>
+</body>
+
+</html>

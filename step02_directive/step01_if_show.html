@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script src="../script/vue.js "></script>
+</head>
+
+<body>
+    <div id="app">
+        1.v-if <br>
+        <button @click="ifSwitch()">if로 그림 보이게 하기</button>
+        <div> 
+            <img v-if="ifFlag" src="../images/vuelogo.png">
+        </div>
+        2.v-show<br>
+        <button @click="showSwitch()">if로 그림 보이게 하기</button>
+        <div>
+            <p v-show="showFlag">SHOW</p>
+        </div>
+        3.다중 조건 처리<br>
+        <button @click="error = !error">이미지보기 or 감추기</button>
+        <p v-if="error">이미지 로드 실패</p>
+        <p v-else-if="appear">
+            <img v-if="ifFlag" src="../images/vuelogo.png">
+        </p>
+        <p v-else>
+            두 조건 모두 false
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ifFlag: true,
+                showFlag: true,
+                error: false,
+                appear: true
+            },
+            methods: {
+                ifSwitch: function () {
+                    this.ifFlag = !this.ifFlag;
+                },
+                showSwitch: function () {
+                    this.showFlag = !this.showFlag;
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+<body>
+    <h3>이벤트 버스로 데이터 전송</h3>
+    <div id="app">
+        <child-component></child-component>
+    </div>
+    <script>
+        let eventBus = new Vue();
+        console.log('인스턴스 전');
+        Vue.component('child-component',{
+            template: `<button @click="showLog">데이터 전달</button>`,
+            methods: {
+                showLog : function() {
+                    eventBus.$emit('triggerEvent', 100);
+                }
+            }
+        });
+        let vm = new Vue({
+            el: '#app',
+            created: function() {
+                console.log('실행시점---');
+                eventBus.$on('triggerEvent', function(v) {
+                    console.log('받은데이터'+v);
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>

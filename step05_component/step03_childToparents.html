@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../script/vue.js"></script>
+</head>
+<body>
+    <h3>자식에서 부모로 데이터 보내기</h3>
+    <br><hr>
+    <div id="app">
+        <chld-component v-on:sendmsg="receivemsg"></chld-component><br>
+        {{name}}
+    </div>
+    <script>
+        Vue.component('chld-component', {
+            template: `<div><button @click="sendmsg()">부모에게 전달할 데이터</button></div>`,
+            methods: {
+                sendmsg : function() {
+                    this.$emit('sendmsg', '유재석');
+                }
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                name: '$emit()을 이요한 데이터 전달'
+            },
+            methods : {
+                receivemsg : function (data) {
+                    this.name = data;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
