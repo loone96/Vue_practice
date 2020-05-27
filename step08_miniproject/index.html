@@ -2,467 +2,101 @@
 <html lang="en">
 
 <head>
-  <title>W3.CSS Template</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <style>
-    body {
-      font-family: "Lato", sans-serif
-    }
+<!-- Required meta tags-->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Colorlib Templates">
+<meta name="author" content="Colorlib">
+<meta name="keywords" content="Colorlib Templates">
 
-    .mySlides {
-      display: none
-    }
+<!-- Title Page-->
+<title>가입정보</title>
 
-    8 ul {
-      list-style: none;
-      padding: 0;
-    }
+<!-- Icons font CSS-->
+<link href="vendor2/mdi-font/css/material-design-iconic-font.min.css"
+	rel="stylesheet" media="all">
+<link href="vendor2/font-awesome-4.7/css/font-awesome.min.css"
+	rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+	rel="stylesheet">
 
-    li {
-      background-color: black;
-      border: 2px solid red;
-      padding: 5px;
-      margin-bottom: 5px;
-      color: white;
-    }
-  </style>
-  <link rel="stylesheet" type="text/css" href="../css/table.css">
-  <script src="../script/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- Vendor CSS-->
+<link href="vendor2/select2/select2.min.css" rel="stylesheet"
+	media="all">
+<link href="vendor2/datepicker/daterangepicker.css" rel="stylesheet"
+	media="all">
+
+<!-- Main CSS-->
+<link href="css/signup.css" rel="stylesheet" media="all">
+<script src="./js/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
 <body>
+	<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo" id="signup">
+		<div class="wrapper wrapper--w680">
+			<div class="card card-1">
+				<div class="card-heading"></div>
+				<div class="card-body">
+					<h2 class="title">가입정보</h2>
+					<form method="get">
+						<input type="hidden" name="command" value="signup">
+						<div class="input-group">
+							<input class="input--style-1" type="text" placeholder="아이디"
+								name="id" v-model="newId">
+						</div>
+						<div class="input-group">
+							<input class="input--style-1" type="password" placeholder="비밀번호"
+								name="password" v-model="newPw">
+						</div>
 
-  <!-- Navbar -->
-  <div class="w3-top">
-    <div class="w3-bar w3-black w3-card">
-      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
-        onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="fa fa-home"
-          style="font-size:24px"></i>HOME</a>
-      <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BAND</a>
-      <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SHOP</a>
-      <a href="#dept" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DEPT</a>
-      <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-      <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-          <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-          <a href="#" class="w3-bar-item w3-button">Extras</a>
-          <a href="#" class="w3-bar-item w3-button">Media</a>
-        </div>
-      </div>
-      <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-          class="fa fa-search"></i></a>
-      <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-          class="glyphicon glyphicon-shopping-cart"></i> 체크아웃</a>
-    </div>
-  </div>
+						<select name="type" v-model="newType">
+							<option disabled="disabled" selected="selected">업종</option>
+							<option value="service">서비스</option>
+							<option value="office">사무직</option>
+							<option value="seller">판매</option>
+							<option value="cooking">외식/음료</option>
+							<option value="delivery">배달</option>
+						</select>
 
-  <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-  <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-    <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-    <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
-  </div>
+						<div class="p-t-20">
+							<button class="btn btn--radius btn--green" @click="signup">가입하기</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <!-- Page content -->
-  <div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-    <!-- Automatic Slideshow Images -->
-    <div class="mySlides w3-display-container w3-center">
-      <img src="images/la.jpg" style="width:100%">
-      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-        <h3>Los Angeles</h3>
-        <p><b>We had the best time playing at Venice Beach!</b></p>
-      </div>
-    </div>
-    <div class="mySlides w3-display-container w3-center">
-      <img src="images/ny.jpg" style="width:100%">
-      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-        <h3>New York</h3>
-        <p><b>The atmosphere in New York is lorem ipsum.</b></p>
-      </div>
-    </div>
-    <div class="mySlides w3-display-container w3-center">
-      <img src="images/chicago.jpg" style="width:100%">
-      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-        <h3>Chicago</h3>
-        <p><b>Thank you, Chicago - A night we won't forget.</b></p>
-      </div>
-    </div>
-
-    <!-- The Band Section -->
-    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px;" id="band">
-      <h2 class="w3-wide">-노트북 제품 선택-</h2>
-      <div id="laptop">
-        <ul>
-          <li v-for="company in companies">
-            <input type="checkbox" v-bind:value="company" v-model="selectedCompanies">{{company.name}}
-          </li>
-        </ul>
-        <div>
-          선택한 제품
-          <ul>
-            <li v-for="selectCom in selectedCompanies">
-              <b>{{selectCom.name}}</b>-{{selectCom.product}} {{selectCom.price}}원
-            </li>
-          </ul>
-          <button @click="selectAll">모두선택</button>
-          <button @click="reset">모두해제</button>
-          <div>
-            <p>
-              합계: {{sum | currency}}원
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="w3-row w3-padding-32">
-        <div class="w3-third">
-          <p>Name</p>
-          <img src="images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-        </div>
-        <div class="w3-third">
-          <p>Name</p>
-          <img src="images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-        </div>
-        <div class="w3-third">
-          <p>Name</p>
-          <img src="images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
-        </div>
-      </div>
-    </div>
-
-    <!-- The Tour Section -->
-
-    <div class="w3-black" id="tour">
-      <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="app">
-        <h2 class="w3-wide w3-center">애완 용품 샵</h2>
-        <p class="w3-opacity w3-center"><i>많이 사주세요.</i></p><br>
-
-
-        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-          <div class="w3-third w3-margin-bottom">
-            <img src="../images/cat.jpeg" alt="New York" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>고양이 사료</b></p>
-              <p class="w3-opacity">Fri 27 Nov 2016</p>
-              <p>유기농 사료입니다.</p>
-              <button class="w3-button w3-black w3-margin-bottom" v-on:click="addToCart" v-if="canAddToCart">장바구니
-                담기</button>
-              <button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout"
-                onclick="document.getElementById('ticketModal').style.display='block'">{{ cartItemCount}} 체크아웃
-              </button>
-            </div>
-          </div>
-          <div class="w3-third w3-margin-bottom">
-            <img src="images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>Paris</b></p>
-              <p class="w3-opacity">Sat 28 Nov 2016</p>
-              <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-              <button class="w3-button w3-black w3-margin-bottom"
-                onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-            </div>
-          </div>
-          <div class="w3-third w3-margin-bottom">
-            <img src="images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>San Francisco</b></p>
-              <p class="w3-opacity">Sun 29 Nov 2016</p>
-              <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-              <button class="w3-button w3-black w3-margin-bottom"
-                onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ticket Modal -->
-    <!-- <div id="ticketModal" class="w3-modal"> -->
-    <div v-bind:style="display">
-      <div id="ticketModal">
-        <div class="w3-modal-content w3-animate-top w3-card-4">
-          <header class="w3-container w3-teal w3-center w3-padding-32">
-            <span onclick="document.getElementById('ticketModal').style.display='none'"
-              class="w3-button w3-teal w3-xlarge w3-display-topright">&times;</span>
-            <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
-          </header>
-          <div class="w3-container">
-            <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
-            <input class="w3-input w3-border" type="text" placeholder="How many?">
-            <p><label><i class="fa fa-user"></i> Send To</label></p>
-            <input class="w3-input w3-border" type="text" placeholder="Enter email">
-            <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i
-                class="fa fa-check"></i></button>
-            <button class="w3-button w3-red w3-section"
-              onclick="document.getElementById('ticketModal').style.display='none'">Close <i
-                class="fa fa-remove"></i></button>
-            <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 부서 -->
-    <div class="w3-container w3-wide w3-center w3-content w3-center w3-padding-64" style="max-width:800px;" id="dept">
-      <div id="deptvue">
-        <h3>
-          모든 부서 정보 보기
-        </h3>
-        <table>
-            <thead>
-              <tr>
-                <th>부서번호</th>
-                <th>부서이름</th>
-                <th>부서위치</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="dept in departments">
-                <td>{{dept.deptNo}}</td>
-                <td>{{dept.dName}}</td>
-                <td>{{dept.dLoc}}</td>
-              </tr>
-            </tbody>
-        </table>
-        <hr>
-        새로운 부서를 등록할 수 있습니다.
-        <table>
-          <thead>
-            <tr>
-              <th>부서 번호</th>
-              <th>부서 이름</th>
-              <th>부서 위치</th>
-            </tr>
-          </thead>
-          <tr>
-            <td><input type="number" v-model="newNo"></td>
-            <td><input type="text" v-model="newName"></td>
-            <td><input type="text" v-model="newLoc"></td>
-          </tr>
-        </table>
-        <button @click="insertdept">등록하기</button>
-      </div>
-    </div>
-
-
-    <!-- The Contact Section -->
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-      <h2 class="w3-wide w3-center">CONTACT</h2>
-      <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-      <div class="w3-row w3-padding-32">
-        <div class="w3-col m6 w3-large w3-margin-bottom">
-          <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
-          <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
-          <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-        </div>
-        <div class="w3-col m6">
-          <form action="/action_page.php" target="_blank">
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-              <div class="w3-half">
-                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-              </div>
-              <div class="w3-half">
-                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-              </div>
-            </div>
-            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-            <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- End Page Content -->
-  </div>
-
-  <!-- Image of location/map -->
-  <img src="images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
-
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-    </p>
-  </footer>
-
-  <script>
-    // Automatic Slideshow - change image every 4 seconds
-    var myIndex = 0;
-    carousel();
-
-    function carousel() {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      myIndex++;
-      if (myIndex > x.length) { myIndex = 1 }
-      x[myIndex - 1].style.display = "block";
-      setTimeout(carousel, 4000);
-    }
-
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function myFunction() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-      } else {
-        x.className = x.className.replace(" w3-show", "");
-      }
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    var modal = document.getElementById('ticketModal');
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    var APP_LOG_LIFECYCLE_EVENTS = true;
-    var webstore = new Vue({
-      el: '#app',
-      data: {
-        sitename: "Vue.js 애완용품샵",
-        showProduct: true,
-        order: {
-          firstName: '',
-          lastName: '',
-        },
-        product: {
-          id: 1001,
-          title: "고양이 사료, 25파운드",
-          description: "유기농 사료입니다.",
-          price: 2000,
-          image: "../images/cat.jpeg",
-          availableInventory: 5
-        },
-        cart: [],
-        display: 'display:none'
-      },
-      methods: {
-        addToCart: function () {
-          this.cart.push(this.product.id);
-        },
-        showCheckout() {
-          this.display = 'display:block'
-        },
-      },
-      computed: {
-        cartItemCount() {
-          return this.cart.length || '';
-        },
-        canAddToCart() {
-          return this.product.availableInventory > this.cartItemCount;
-        }
-      },
-      filters: {
-        formatPrice(price) {
-          if (!parseInt(price)) { return ""; }
-          if (price > 99999) {
-            var priceString = (price / 100).toFixed(2);
-            var priceArray = priceString.split("").reverse();
-            var index = 3;
-            while (priceArray.length > index + 3) {
-              priceArray.splice(index + 3, 0, ",");
-              index += 4;
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/datepicker/moment.min.js"></script>
+	<script src="vendor/datepicker/daterangepicker.js"></script>
+	<script src="js/global.js"></script>
+	<script src="./js/vue.js"></script>
+	
+	<script>
+        new Vue({
+            el: '#signup',
+            data: {
+                newId: '',
+                newPw: '',
+                newType: ''
+            },
+            methods: {
+                signup: function() {
+                    axios.get('controller?command=signup&id='+this.newId+'&password='+this.newPw+'&type='+this.newType).then.
+                }
             }
-            return "$" + priceArray.reverse().join("");
-          } else {
-            return "$" + (price / 100).toFixed(2);
-          }
-        }
-      }
-    });
 
+        })
+    </script>
 
-
-    new Vue({
-      el: '#laptop',
-      data: {
-        selectedCompanies: [],
-        companies: [
-          { name: 'LG', product: 'LG전자 2019 그램 15ZD990-VX50K', price: 1402000 },
-          {
-            name: 'SAMSUNG', product: '삼성전자 2019 노트북 Pen S NT950SBE-X716A',
-            price: 2157000
-          },
-          {
-            name: 'Lenovo', product: '레노버 LEGION Y530-15ICH i7 1060 Dark Edition',
-            price: 1313000
-          },
-          { name: 'ASUS', product: 'ASUS TUF FX505GM-BQ234', price: 1127000 },
-          {
-            name: 'Apple', product: 'APPLE 맥북프로 2018년형 MR942KH/A (SSD 512GB)',
-            price: 2769000
-          },
-        ]
-      },
-      computed: {
-        sum: function () {
-          let v = 0;
-          for (i = 0; i < this.selectedCompanies.length; i++) {
-            v += this.selectedCompanies[i].price;
-          }
-          return v;
-        }
-      },
-      filters: {
-        currency: function (value) {
-          return new Intl.NumberFormat("kr-KO", { style: "decimal" }).format(value);
-        }
-      },
-      methods: {
-        selectAll: function () {
-          this.selectedCompanies = this.companies;
-        },
-        reset: function () {
-          this.selectedCompanies = [];
-        }
-      }
-    });
-
-    let deptvue = new Vue({
-      el: '#deptvue',
-      data: {
-        departments: '',
-        newNo : '',
-        newName : '',
-        newLoc : ''
-      },
-      mounted: function () {
-        axios.get("http://localhost/step18_deptResponse/controller?command=selectAll").then(response => (this.departments = response.data)).catch(error => { console.log(error) });
-      },
-      methods: {
-        insertdept : function () {
-          axios.get("http://localhost/step18_deptResponse/controller?command=insertDept&deptNo="+this.newNo+"&dName="+this.newName+"&dLoc="+this.newLoc).then(response => (this.departments = response.data)).catch(error => { console.log(error) });
-          this.newNo = '';
-          this.newName = '';
-          this.newNo = '';
-        }
-      }
-
-    });
-  </script>
 </body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
